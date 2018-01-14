@@ -25,6 +25,7 @@
 		08600DCD1FFC0DBA006EA0AF /* RoundedShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08600DCC1FFC0DBA006EA0AF /* RoundedShadowView.swift */; };
 		08600DCF1FFC0FA4006EA0AF /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08600DCE1FFC0FA4006EA0AF /* RoundedView.swift */; };
 		08CAC53E200A863200743AAE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CAC53D200A863200743AAE /* Constants.swift */; };
+		08CAC540200B277500743AAE /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CAC53F200B277500743AAE /* UpdateService.swift */; };
 		8D9C02231FFC8E1200853703 /* RoundedShadowBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C02221FFC8E1200853703 /* RoundedShadowBtn.swift */; };
 		8E725B7424214920A37F4E1A /* Pods_iTaxi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9A522AEA0B65C4AE173C4B /* Pods_iTaxi.framework */; };
 /* End PBXBuildFile section */
@@ -50,6 +51,7 @@
 		08600DCC1FFC0DBA006EA0AF /* RoundedShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShadowView.swift; sourceTree = "<group>"; };
 		08600DCE1FFC0FA4006EA0AF /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		08CAC53D200A863200743AAE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		08CAC53F200B277500743AAE /* UpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
 		2FAC5A8DC13D6CDCF0811A7C /* Pods-iTaxi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTaxi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTaxi/Pods-iTaxi.debug.xcconfig"; sourceTree = "<group>"; };
 		5E9A522AEA0B65C4AE173C4B /* Pods_iTaxi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTaxi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9C02221FFC8E1200853703 /* RoundedShadowBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShadowBtn.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				0830AB7B200A1EE000A5D68B /* DataService.swift */,
+				08CAC53F200B277500743AAE /* UpdateService.swift */,
 			);
 			path = DataService;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 			files = (
 				081C45851FFBED0F00AC797C /* HomeVC.swift in Sources */,
 				08600DCB1FFC0C30006EA0AF /* RoundImageView.swift in Sources */,
+				08CAC540200B277500743AAE /* UpdateService.swift in Sources */,
 				0830AB75200967DA00A5D68B /* LoginVC.swift in Sources */,
 				08600DCF1FFC0FA4006EA0AF /* RoundedView.swift in Sources */,
 				0839301B2009408100DF3AAB /* UIViewEXT.swift in Sources */,
