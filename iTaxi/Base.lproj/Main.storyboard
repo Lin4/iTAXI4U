@@ -209,6 +209,9 @@
                     </view>
                     <connections>
                         <outlet property="actionBtn" destination="o05-3P-DZq" id="MSM-wE-JyS"/>
+                        <outlet property="centreMapBtn" destination="UCH-H9-uFh" id="r7W-jo-byi"/>
+                        <outlet property="destinationCircle" destination="bc9-oI-Xkj" id="NBp-u5-Mkh"/>
+                        <outlet property="destinationTextField" destination="Yyi-rR-uuG" id="4mJ-Kj-WLL"/>
                         <outlet property="mapView" destination="10D-s8-Jsc" id="pPa-Eg-Ic2"/>
                     </connections>
                 </viewController>
@@ -310,7 +313,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample-photo" translatesAutoresizingMaskIntoConstraints="NO" id="bRP-HD-5mR" customClass="RoundImageView" customModule="htchhkr_development" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample-photo" translatesAutoresizingMaskIntoConstraints="NO" id="bRP-HD-5mR" customClass="RoundImageView" customModule="iTaxi" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65.5" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="7dV-pd-d2Z"/>

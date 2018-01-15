@@ -15,7 +15,13 @@ import Firebase
 class HomeVC: UIViewController {
     @IBOutlet weak var actionBtn: RoundedShadowBtn!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var centreMapBtn: UIButton!
+    @IBOutlet weak var destinationTextField: UITextField!
+    @IBOutlet weak var destinationCircle: RoundedView!
+    @IBOutlet weak var cancelBtn: UIButton!
     
+    var tableView = UITableView()
+    var machingItems: [MKMapItem] = [MKMapItem]()
     let revelingSplashView = RevealingSplashView(iconImage: UIImage(named: "launchScreenIcon")!, iconInitialSize: CGSize(width: 80, height: 80), backgroundColor: UIColor.white)
     
     var delegate: CentreVCDelegate?
@@ -26,6 +32,7 @@ class HomeVC: UIViewController {
        
         super.viewDidLoad()
         mapView.delegate = self
+        destinationTextField.delegate = self
         manager = CLLocationManager()
         manager?.delegate = self
         manager?.desiredAccuracy = kCLLocationAccuracyBest
@@ -106,6 +113,7 @@ class HomeVC: UIViewController {
     }
     @IBAction func reCentreButtonTapped(_ sender: Any) {
         centerMapOnUserLocation()
+        centreMapBtn.fadeTo(alphaValue: 0.0, withDuration: 0.2)
     }
 }
 
@@ -134,5 +142,129 @@ extension HomeVC: MKMapViewDelegate {
             return view
         }
         return nil
+    }
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        centreMapBtn.fadeTo(alphaValue: 1.0, withDuration: 0.2)
+    }
+}
+extension HomeVC: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == destinationTextField {
+            tableView.frame = CGRect(x: 20, y: view.frame.height, width: view.frame.width - 40, height: view.frame.height - 170)
+            tableView.layer.cornerRadius = 5.0
+            tableView.register(UITableViewCell.self, forCellReuseIdentifier: CELL_LOCATION)
+            
+            tableView.delegate = self
+            tableView.dataSource = self
+            
+            tableView.tag = 18
+            tableView.rowHeight = 60
+            
+            view.addSubview(tableView)
+            animateTableView(shouldShow: true)
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.destinationCircle.backgroundColor = UIColor.red
+                self.destinationCircle.borderColor = UIColor.init(red: 199/255, green: 0/255, blue: 0/255, alpha: 1.0)
+            })
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == destinationTextField {
+            performSearch()
+            view.endEditing(true)
+        }
+        return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == destinationTextField {
+            if destinationTextField.text == "" {
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.destinationCircle.backgroundColor = UIColor.lightGray
+                    self.destinationCircle.borderColor = UIColor.darkGray
+                })
+            }
+        }
+    }
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        machingItems = []
+        tableView.reloadData()
+        return true
+    }
+    
+    func animateTableView(shouldShow: Bool) {
+        if shouldShow {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.tableView.frame = CGRect(x: 20, y: 170, width: self.view.frame.width - 40, height: self.view.frame.height - 170)
+            })
+        } else {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.tableView.frame = CGRect(x: 20, y: self.view.frame.height, width: self.view.frame.width - 40, height: self.view.frame.height - 170)
+            }, completion: { (finished) in
+                for subview in self.view.subviews {
+                    if subview.tag == 18 {
+                        subview.removeFromSuperview()
+                    }
+                }
+            })
+        }
+    }
+    
+    func performSearch() {
+        machingItems.removeAll()
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = destinationTextField.text
+        request.region = mapView.region
+        
+        let search = MKLocalSearch(request: request)
+        
+        search.start { (response, error) in
+            if error != nil {
+            
+            } else if response!.mapItems.count == 0 {
+             
+            } else {
+                for mapItem in response!.mapItems {
+                    self.machingItems.append(mapItem as MKMapItem)
+                    self.tableView.reloadData()
+                   
+                }
+            }
+        }
+    }
+}
+
+extension HomeVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: CELL_LOCATION)
+        let mapItem = machingItems[indexPath.row]
+        cell.textLabel?.text = mapItem.name
+        cell.detailTextLabel?.text = mapItem.placemark.title
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return machingItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+        print("hello")
+
+}
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        view.endEditing(true)
+    }
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if destinationTextField.text == "" {
+            animateTableView(shouldShow: false)
+        }
     }
 }
