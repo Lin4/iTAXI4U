@@ -22,7 +22,7 @@ let ACCOUNT_TYPE_DRIVER = "DRIVER"
 let COORDINATE = "coordinate"
 
 /****** Trip *****/
-let TRIP_COORDINATE = "tripCoordinate"
+let TRIP_COORDINATE = "tripCoordinates"
 let TRIP_IS_ACCEPTED = "tripIsAccepted"
 let TRIP_IN_PROGRESS = "tripIsInProgress"
 

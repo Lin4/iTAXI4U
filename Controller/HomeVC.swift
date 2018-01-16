@@ -28,6 +28,8 @@ class HomeVC: UIViewController, Alertable {
     var delegate: CentreVCDelegate?
     var manager: CLLocationManager?
     var regionRadious: CLLocationDistance = 1000
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -50,6 +52,28 @@ class HomeVC: UIViewController, Alertable {
         revelingSplashView.animationType = SplashAnimationType.heartBeat
         revelingSplashView.startAnimation()
         revelingSplashView.heartAttack = true
+        
+        
+        UpdateService.instance.observeTrips { (tripDict) in
+            if let tripDict = tripDict {
+                let pickupCoordinateArray = tripDict[USER_PICKUP_COORDINATE] as! NSArray
+                let tripKey = tripDict[USER_PASSENGER_KEY] as! String
+                let acceptanceStatus = tripDict[TRIP_IS_ACCEPTED] as! Bool
+                
+                if acceptanceStatus == false {
+                    DataService.instance.driverIsAvailable(key: CURRENT_USER_ID!, handler: { (available) in
+                        if let available = available {
+                            if available == true {
+                                let storyboard = UIStoryboard(name: MAIN_STORYBOARD, bundle: Bundle.main)
+                                let pickupVC = storyboard.instantiateViewController(withIdentifier: VC_PICKUP) as? PickupVC
+                                pickupVC?.initData(coordinate: CLLocationCoordinate2D(latitude: pickupCoordinateArray[0] as! CLLocationDegrees, longitude: pickupCoordinateArray[1] as! CLLocationDegrees), passengerKey: tripKey)
+                                self.present(pickupVC!, animated: true, completion: nil)
+                            }
+                        }
+                    })
+                }
+            }
+        }
     }
     
     
@@ -110,7 +134,10 @@ class HomeVC: UIViewController, Alertable {
     }
 
     @IBAction func actionBtnTapped(_ sender: Any) {
+        UpdateService.instance.updateTripsWithCoordinatesUponRequest()
         actionBtn.animateButton(shouldLoad: true, withMessage: nil)
+        self.view.endEditing(true)
+        destinationTextField.isUserInteractionEnabled = false
     }
     
     @IBAction func menuBtnWasPressed(_ sender: Any) {
