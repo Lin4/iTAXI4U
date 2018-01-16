@@ -218,7 +218,7 @@ extension HomeVC: MKMapViewDelegate {
         let directions = MKDirections(request: request)
         directions.calculate { (response, error) in
             guard let response = response else {
-                self.showAlert(error.debugDescription)
+                self.showAlert("Please Pick the locations those you can reach by lannd ...!!!")
                 return
             }
             self.route = response.routes[0]
@@ -358,6 +358,7 @@ extension HomeVC: UITextFieldDelegate {
         let search = MKLocalSearch(request: request)
         search.start { (response, error) in
             if error != nil {
+                self.showAlert(ERROR_MSG_UNEXPECTED_ERROR)
             } else if response!.mapItems.count == 0 {
                     self.showAlert(ERROR_MSG_NO_MATCHES_FOUND)
             } else {

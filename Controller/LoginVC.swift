@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginVC: UIViewController, UITextFieldDelegate {
+class LoginVC: UIViewController, UITextFieldDelegate, Alertable {
     @IBOutlet weak var emailTxtField: RoundedCornerTextField!
     @IBOutlet weak var passwordTextField: RoundedCornerTextField!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -53,12 +53,10 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     } else {
                         if let errorCode = AuthErrorCode(rawValue: error!._code) {
                             switch errorCode {
-                            case .emailAlreadyInUse:
-                                print("Email Already In Use please try different one")
                             case .wrongPassword:
-                                print("Wrong Password")
+                                self.showAlert(ERROR_MSG_WRONG_PASSWORD)
                             default:
-                                print("Something went wrong please try again")
+                                self.showAlert(ERROR_MSG_UNEXPECTED_ERROR)
                             }
                         }
                     Auth.auth().createUser(withEmail: email, password: password, completion: {
@@ -67,11 +65,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                                 if let errorCode = AuthErrorCode(rawValue: error!._code) {
                                     switch errorCode {
                                     case .emailAlreadyInUse:
-                                        print("Email Already In Use please try different one")
-                                    case .invalidEmail:
-                                        print("Invalid Email! please try again")
+                                        self.showAlert(ERROR_MSG_INVALID_EMAIL)
                                     default:
-                                        print("Something went wrong please try again")
+                                        self.showAlert(ERROR_MSG_UNEXPECTED_ERROR)
                                     }
                                 }
                             } else {
