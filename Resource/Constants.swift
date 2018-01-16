@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import Firebase
+
+let CURRENT_USER_ID = Auth.auth().currentUser?.uid
 
 /****** Account *****/
 let ACCOUNT_IS_DRIVER = "isDriver"

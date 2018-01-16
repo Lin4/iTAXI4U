@@ -27,6 +27,8 @@
 		08CAC53E200A863200743AAE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CAC53D200A863200743AAE /* Constants.swift */; };
 		08CAC540200B277500743AAE /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CAC53F200B277500743AAE /* UpdateService.swift */; };
 		08CAC542200BA58E00743AAE /* DriverAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CAC541200BA58E00743AAE /* DriverAnnotation.swift */; };
+		08CAC544200CBA0A00743AAE /* PassangerAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CAC543200CBA0A00743AAE /* PassangerAnnotation.swift */; };
+		08CAC546200CED2A00743AAE /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CAC545200CED2A00743AAE /* Alertable.swift */; };
 		8D9C02231FFC8E1200853703 /* RoundedShadowBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C02221FFC8E1200853703 /* RoundedShadowBtn.swift */; };
 		8E725B7424214920A37F4E1A /* Pods_iTaxi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9A522AEA0B65C4AE173C4B /* Pods_iTaxi.framework */; };
 /* End PBXBuildFile section */
@@ -54,6 +56,8 @@
 		08CAC53D200A863200743AAE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		08CAC53F200B277500743AAE /* UpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
 		08CAC541200BA58E00743AAE /* DriverAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverAnnotation.swift; sourceTree = "<group>"; };
+		08CAC543200CBA0A00743AAE /* PassangerAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassangerAnnotation.swift; sourceTree = "<group>"; };
+		08CAC545200CED2A00743AAE /* Alertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		2FAC5A8DC13D6CDCF0811A7C /* Pods-iTaxi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTaxi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTaxi/Pods-iTaxi.debug.xcconfig"; sourceTree = "<group>"; };
 		5E9A522AEA0B65C4AE173C4B /* Pods_iTaxi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTaxi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9C02221FFC8E1200853703 /* RoundedShadowBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShadowBtn.swift; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				082DF1331FFD37410025A8D4 /* CentreVCDelegate.swift */,
+				08CAC545200CED2A00743AAE /* Alertable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 				8D9C02221FFC8E1200853703 /* RoundedShadowBtn.swift */,
 				0830AB76200972E000A5D68B /* RoundedCornerTextField.swift */,
 				08CAC541200BA58E00743AAE /* DriverAnnotation.swift */,
+				08CAC543200CBA0A00743AAE /* PassangerAnnotation.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -335,11 +341,13 @@
 				08CAC540200B277500743AAE /* UpdateService.swift in Sources */,
 				08CAC542200BA58E00743AAE /* DriverAnnotation.swift in Sources */,
 				0830AB75200967DA00A5D68B /* LoginVC.swift in Sources */,
+				08CAC544200CBA0A00743AAE /* PassangerAnnotation.swift in Sources */,
 				08600DCF1FFC0FA4006EA0AF /* RoundedView.swift in Sources */,
 				0839301B2009408100DF3AAB /* UIViewEXT.swift in Sources */,
 				08CAC53E200A863200743AAE /* Constants.swift in Sources */,
 				082DF1311FFD2D550025A8D4 /* ContainerVC.swift in Sources */,
 				08600DCD1FFC0DBA006EA0AF /* RoundedShadowView.swift in Sources */,
+				08CAC546200CED2A00743AAE /* Alertable.swift in Sources */,
 				081C45831FFBED0F00AC797C /* AppDelegate.swift in Sources */,
 				082DF1341FFD37410025A8D4 /* CentreVCDelegate.swift in Sources */,
 				0830AB7C200A1EE000A5D68B /* DataService.swift in Sources */,
